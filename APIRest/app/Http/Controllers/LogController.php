@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Server;
+use App\Models\Log;
 use Illuminate\Http\Request;
 
 class LogController extends Controller
@@ -51,7 +52,11 @@ class LogController extends Controller
      */
     public function show($id)
     {
-        //
+        $log = Log::find($id);
+        if (!$log) {
+            return response()->json(['errors' => array(['code' => 404, 'message' => 'No se encuentra un avión con ese código.'])], 404);
+        }
+        return response()->json(['status' => 'ok', 'data' => $log], 200);
     }
 
     /**

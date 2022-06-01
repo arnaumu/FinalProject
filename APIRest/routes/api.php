@@ -38,4 +38,6 @@ Route::prefix('v1')->group(function () {
     Route::delete('/delete-log/{idServer}/{idLog}', [ServerLogController::class, 'destroy']);
     Route::put('/edit-log/{idServer}/{idLog}', [ServerLogController::class, 'update']);
 
+    Route::get('/get-log/{id}', [LogController::class, 'show']);
+
 });

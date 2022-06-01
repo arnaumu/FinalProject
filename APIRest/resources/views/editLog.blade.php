@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <script src="{{ asset('js\newLog.js') }}"></script>
+    <script src="{{ asset('js\editLog.js') }}"></script>
     <div class="contentPrincipal">
         <h2 class="mb-5">Edit log</h2>
 
@@ -18,14 +18,14 @@
         <a class="btn btn-secondary mb-6" onclick="back()" role="button">Back</a>
 
         <div class="formulario d-flex justify-content-center p-6">
-            <form id="formNewLog" name="log">
+            <form id="formEditLog" name="log">
                 <p class="mb-2 mt-4"><b>Enter the new logs values:</b></p><br>
                 <label for="timestamp">Timestamp:</label><br>
                 <input type="datetime-local" id="timestamp" name="timestamp" required><br>
                 <label for="description">Description:</label><br>
                 <input type="text" id="description" name="description" required><br><br>
             </form>
-            <input type="submit" id="send" value="Update log" onclick="sendLog()">
+            <input type="submit" id="send" value="Update log" onclick="updateLog()">
             
         </div>
     </div>
