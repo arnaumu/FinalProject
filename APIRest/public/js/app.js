@@ -1,5 +1,5 @@
 function hello() {
-    console.log("hejlsaaa");
+    console.log("hello");
 }
 
 window.onload = async function() {
@@ -26,10 +26,6 @@ async function getServer(id) {
     }
 }
 
-function editServer(serverId) {
-
-}
-
 async function deleteServer(idServer) {
     if (confirm('Are you sure that you want to delete this server?\nWARNING: This action will delete ALL logs associated to this server.')) {
         //BORRA LOS LOGS DEL SERVER
@@ -44,7 +40,10 @@ async function deleteServer(idServer) {
                     for (let i = 0; i < json.data.length; i++) {
                         console.log(json.data.length);
                         let idLog = json.data[i].id;
-                        deleteLog(idServer, idLog);
+                        // deleteLog(idServer, idLog);
+                        fetch('http://localhost:8000/api/v1/delete-log/' + idServer + '/' + idLog, {
+                            method: 'DELETE',
+                        });
                     }
                 }
             });
@@ -54,10 +53,9 @@ async function deleteServer(idServer) {
             method: 'DELETE',
         }).then(data => reload());
     }
-
 }
 
-function deleteLog(idServer, idLog) {
+async function deleteLog(idServer, idLog) {
     console.log("Deleting logs");
     fetch('http://localhost:8000/api/v1/delete-log/' + idServer + '/' + idLog, {
         method: 'DELETE',
@@ -68,6 +66,7 @@ async function reload() {
     await renderServers();
     window.location.href = 'http://127.0.0.1:8000/';
 }
+
 async function renderServers() {
     let servers = await getAllServers();
     var table = document.getElementById("serversTable");

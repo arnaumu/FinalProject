@@ -109,18 +109,18 @@ async function setLogs(id) {
         celda5.appendChild(btnDelete);
 
     }
+}
 
-    function deleteLog(idServer, idLog) {
-        if (confirm('Are you sure that you want to delete this log?')) {
-            fetch('http://localhost:8000/api/v1/delete-log/' + idServer + '/' + idLog, {
-                method: 'DELETE',
-            }).then(data => back());
-        }
-
+async function deleteLog(idServer, idLog) {
+    if (confirm('Are you sure that you want to delete this log?')) {
+        fetch('http://localhost:8000/api/v1/delete-log/' + idServer + '/' + idLog, {
+            method: 'DELETE',
+        }).then(data => back());
     }
 
-    function back() {
-        let idServer = document.getElementById("id").innerHTML;
-        return window.location.href = 'http://127.0.0.1:8000/server-logs/' + idServer;
-    }
+}
+
+async function back() {
+    let idServer = document.getElementById("id").innerHTML;
+    return window.location.href = 'http://127.0.0.1:8000/server-logs/' + idServer;
 }

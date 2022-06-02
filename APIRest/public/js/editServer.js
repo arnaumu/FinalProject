@@ -7,10 +7,12 @@ window.onload = async function() {
 function updateServer() {
     var serverId = document.getElementById("id").innerHTML;
 
-    if (document.getElementById("ipv4").value == '') {
-        document.getElementById("ipv4").value = 'null';
-    } else if (document.getElementById("ipv6").value == '') {
-        document.getElementById("ipv6").value = 'null';
+    if (document.getElementById('ipv4').value == '') {
+        document.getElementById('ipv4').value = 'null'
+    }
+
+    if (document.getElementById('ipv6').value == '') {
+        document.getElementById('ipv6').value = 'null'
     }
 
     if (validate() == true) {
@@ -55,18 +57,17 @@ async function setValues(serverId) {
     let ipv6 = document.getElementById("ipv6").value;
 
 
-    if (document.getElementById("ipv4").value == 'null') {
+    if (server.data.ipv4 == 'null') {
         document.getElementById("ipv4").value = '';
     } else {
         document.getElementById("ipv4").value = server.data.ipv4;
     }
 
-    if (document.getElementById("ipv6").value == 'null') {
+    if (server.data.ipv6 == 'null') {
         document.getElementById("ipv6").value = '';
     } else {
         document.getElementById("ipv6").value = server.data.ipv6;
     }
-
 
     // document.getElementById("ipv4").value = server.data.ipv4;
     // document.getElementById("ipv6").value = server.data.ipv6;
@@ -76,19 +77,23 @@ async function setValues(serverId) {
 }
 
 function validate() {
+    var serverId = document.getElementById("id").innerHTML;
+
     var description = document.getElementById("description").value;
     var location = document.getElementById("location").value;
     var ipv4 = document.getElementById("ipv4").value;
     var ipv6 = document.getElementById("ipv6").value;
 
 
+    if (document.getElementById("ipv4").value == '' && document.getElementById("ipv6").value == '') {
+        alert("There are empty IPs fields.\nYou have to fill at least one IP field.");
+        return window.location.href = 'http://127.0.0.1:8000/server-edit/' + serverId;
+    }
+
     if (location.length == 0 || description.length == 0) {
         alert("There are empty fields!\nYou have to fill every input.");
         return window.location.href = 'http://127.0.0.1:8000/server-edit/' + serverId
-    } else if (ipv4.length == 0 && ipv6.length == 0) {
-        alert("There are empty IPs fields.\nYou have to fill at least one IP field.");
-        return window.location.href = 'http://127.0.0.1:8000/server-edit/' + serverId;
-    } else {
-        return true;
     }
+    return true;
+
 }

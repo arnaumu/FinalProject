@@ -19,7 +19,7 @@ function validate() {
     }
 }
 
-function sendLog() {
+async function sendLog() {
     let idServer = document.getElementById("id").innerHTML;
     if (validate()) {
         let form = document.getElementById("formNewLog");
@@ -51,7 +51,7 @@ function sendLog() {
     }
 }
 
-function back() {
+async function back() {
     let idServer = document.getElementById("id").innerHTML;
     return window.location.href = 'http://127.0.0.1:8000/server-logs/' + idServer;
 }

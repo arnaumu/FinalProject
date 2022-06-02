@@ -42,13 +42,6 @@ function validate() {
     } else if (input_ipv4.value.length == 0 && input_ipv6.value.length == 0) {
         alert("There are empty IPs fields.\nYou have to fill at least one IP field.");
         return reloadPage();
-
-        // } else if (input_ipv4.value.length != 0 && input_ipv4.value.length != 'null') {
-        //     return checkIpv4(input_ipv4.value);
-        // } else if (checkIpv6(input_ipv6.value) == false && input_ipv6.value.length != 0) {
-        //     alert("You have entered an invalid IPV6 address!");
-        //     return reloadPage();
-        // } 
     } else {
         alert("New server entered.");
         return window.location.href = "http://127.0.0.1:8000/";

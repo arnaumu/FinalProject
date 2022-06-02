@@ -4,12 +4,12 @@ window.onload = async function() {
 };
 
 
-function back() {
+async function back() {
     let idServer = document.getElementById("idServer").innerHTML;
     return window.location.href = 'http://127.0.0.1:8000/server-logs/' + idServer;
 }
 
-function updateLog() {
+async function updateLog() {
     let idServer = document.getElementById("idServer").innerHTML;
     let idLog = document.getElementById("idLog").innerHTML;
 
