@@ -26,7 +26,7 @@ async function getServer(id) {
     }
 }
 
-async function deleteServer(idServer) {
+async function deleteServerLogs(idServer) {
     if (confirm('Are you sure that you want to delete this server?\nWARNING: This action will delete ALL logs associated to this server.')) {
         //BORRA LOS LOGS DEL SERVER
         let url = 'http://localhost:8000/api/v1/logs-server/' + idServer;
@@ -40,23 +40,29 @@ async function deleteServer(idServer) {
                     for (let i = 0; i < json.data.length; i++) {
                         console.log(json.data.length);
                         let idLog = json.data[i].id;
-                        // deleteLog(idServer, idLog);
-                        fetch('http://localhost:8000/api/v1/delete-log/' + idServer + '/' + idLog, {
-                            method: 'DELETE',
-                        });
+                        deleteLog(idServer, idLog);
+                        // fetch('http://localhost:8000/api/v1/delete-log/' + idServer + '/' + idLog, {
+                        //     method: 'DELETE',
+                        // });
                     }
                 }
             });
 
         //BORRA EL SERVER
-        fetch('http://localhost:8000/api/v1/delete-server/' + idServer, {
-            method: 'DELETE',
-        }).then(data => reload());
+        await deleteServer(idServer);
+        // fetch('http://localhost:8000/api/v1/delete-server/' + idServer, {
+        //     method: 'DELETE',
+        // }).then(data => reload());
     }
 }
 
+async function deleteServer(idServer) {
+    fetch('http://localhost:8000/api/v1/delete-server/' + idServer, {
+        method: 'DELETE',
+    }).then(data => reload());
+}
+
 async function deleteLog(idServer, idLog) {
-    console.log("Deleting logs");
     fetch('http://localhost:8000/api/v1/delete-log/' + idServer + '/' + idLog, {
         method: 'DELETE',
     });
@@ -126,7 +132,7 @@ async function renderServers() {
         let btnDelete = document.createElement("button");
         btnDelete.setAttribute("id", "btnDelete" + server.id);
         btnDelete.onclick = async function() {
-            await deleteServer(server.id);
+            await deleteServerLogs(server.id);
         };
         let iconDelete = document.createElement("i");
         iconDelete.setAttribute("class", "bi bi-trash");
