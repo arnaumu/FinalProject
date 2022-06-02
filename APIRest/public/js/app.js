@@ -125,8 +125,8 @@ async function renderServers() {
         //DELETE
         let btnDelete = document.createElement("button");
         btnDelete.setAttribute("id", "btnDelete" + server.id);
-        btnDelete.onclick = function() {
-            deleteServer(server.id);
+        btnDelete.onclick = async function() {
+            await deleteServer(server.id);
         };
         let iconDelete = document.createElement("i");
         iconDelete.setAttribute("class", "bi bi-trash");
